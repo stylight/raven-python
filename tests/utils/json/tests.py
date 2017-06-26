@@ -53,6 +53,14 @@ class JSONTest(TestCase):
         d = {dir: "func_key"}
         assert json.dumps(d) == '{"<built-in function dir>": "func_key"}'
 
+    def test_int_keys(self):
+        d = {1: "func_key"}
+        assert json.dumps(d) == '{"1": "func_key"}'
+
+    def test_float_keys(self):
+        d = {1.0: "func_key"}
+        assert json.dumps(d) == '{"1.0": "func_key"}'
+
     def test_frozenset_keys(self):
         key = frozenset([1])
         d = {key: "set_key"}

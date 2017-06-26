@@ -779,7 +779,11 @@ class Client(object):
         """
         Serializes ``data`` into a raw string.
         """
-        return zlib.compress(json.dumps(data).encode('utf8'))
+        try:
+            rv = zlib.compress(json.dumps(data).encode('utf8'))
+        except TypeError:
+            print repr(data)
+            raise
 
     def decode(self, data):
         """
